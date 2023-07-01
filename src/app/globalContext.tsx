@@ -6,6 +6,7 @@ import {QueryClient} from '@tanstack/query-core'
 import {QueryClientProvider} from '@tanstack/react-query'
 import {OperationsContextType, OperationsProvider} from '@/data/operationsContext'
 import {FakeSnippetOperations} from '@/data/fake/fakeSnippetOperations'
+import {UserProvider} from "@auth0/nextjs-auth0/client";
 
 type GlobalContextType = {
   children: ReactNode
@@ -19,6 +20,7 @@ const operations: OperationsContextType = {
 
 export const GlobalContext: FC<GlobalContextType> = ({children}) => {
   return (
+      <UserProvider>
     <ThemeProvider theme={defaultTheme}>
       <QueryClientProvider client={queryClient}>
         <OperationsProvider value={operations}>
@@ -26,6 +28,7 @@ export const GlobalContext: FC<GlobalContextType> = ({children}) => {
         </OperationsProvider>
       </QueryClientProvider>
     </ThemeProvider>
+      </UserProvider>
 
   )
 }
