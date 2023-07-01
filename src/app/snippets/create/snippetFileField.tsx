@@ -10,6 +10,8 @@ export const SnippetFileField: FC = () => {
 
   const contentErrors = useMemo(() => errors['content'], [errors])
 
+  console.log(contentErrors)
+
   const {name, required} = register('content')
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
